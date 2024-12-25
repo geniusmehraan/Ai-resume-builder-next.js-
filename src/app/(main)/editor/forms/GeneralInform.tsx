@@ -29,7 +29,7 @@ const GeneralInform = () => {
           <FormField
             control={form.control}
             name="title"
-            render={(field) => (
+            render={({field}) => (
               <FormItem>
                 <FormLabel>Resume name</FormLabel>
                 <FormControl>
@@ -42,7 +42,7 @@ const GeneralInform = () => {
           <FormField
             control={form.control}
             name="description"
-            render={(field) => (
+            render={({field}) => (
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>

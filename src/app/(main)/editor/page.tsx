@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <div className="h-[85vh]">
+    <div className="h-[100vh]">
  <ResumeEditor></ResumeEditor>
  </div>
   

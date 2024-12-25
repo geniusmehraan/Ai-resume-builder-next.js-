@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GeneralInform from "./forms/GeneralInform";
+import PersonalInform from "./forms/PersonalInform";
 
 
 
@@ -10,9 +11,9 @@ const ResumeEditor = () => {
     <div className="flex grow flex-col h-full">
 
 <header className=" space-y-1.5 border-b text-center">
-        <div className="flex flex-col text-center justify-center p-4">
-          <h1 className="lg:text-2xl xl:text-2xl md:text-xl font-bold">Design your resume</h1>
-          <span className="text-muted-foreground">
+        <div className="flex flex-col text-center justify-center p-2">
+          <h1 className="lg:text-xl xl:text-xl md:text-xl font-bold">Design your resume</h1>
+          <span className="text-muted-foreground text-sm">
             Follow the steps to design your resume. Progress will be saved
             automatically
           </span>
@@ -21,8 +22,9 @@ const ResumeEditor = () => {
 
       <main className="relative grow">
         <div className="absolute top-0 bottom-0 flex w-full ">
-          <div className="p-3 w-full md:w-1/2">
-          <GeneralInform></GeneralInform>
+          <div className=" w-full md:w-1/2">
+          {/* <GeneralInform></GeneralInform> */}
+          <PersonalInform></PersonalInform>
           </div>
           <div className="grow border-r"></div>
           <div className="hidden w-1/2 md:flex">left</div>
@@ -31,8 +33,8 @@ const ResumeEditor = () => {
 
 
      
-      <footer className="w-full p-4">
-        <div className="flex  justify-between md:px-4 sm:px-2 lg:px-32 xl:px-38 space-y-1.5 items-center   w-full">
+      <footer className="w-full p-2 border-t">
+        <div className="flex  justify-between md:px-4 sm:px-2 lg:px-32 xl:px-38  items-center   w-full">
           <div className="flex gap-2">
             <Button variant={"secondary"}>Prevoius step</Button>
             <Button>Next step</Button>

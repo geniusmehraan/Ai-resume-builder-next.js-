@@ -14,8 +14,8 @@ const Navbar = () => {
   const {theme} = useTheme()
   const pathname = usePathname()
   return (
-    <header className=" w-full shadow-sm p-4">
-      <div className="h-full w-full px-8 flex justify-between items-center">
+    <header className="w-full  shadow-sm p-2">
+      <div className=" w-full px-8 flex justify-between items-center">
         
         <Link href={"/billing"} className="flex items-center gap-2">
           {<Image src={logo} alt="" width={40} height={40} />}
