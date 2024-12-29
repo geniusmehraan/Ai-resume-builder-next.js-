@@ -3,10 +3,22 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GeneralInform from "./forms/GeneralInform";
 import PersonalInform from "./forms/PersonalInform";
+import { useSearchParams } from "next/navigation";
+import { steps } from "./steps";
 
 
 
 const ResumeEditor = () => {
+   const searchParams = useSearchParams();
+console.log(searchParams)
+   const  currentStep = searchParams.get("step") || steps[0].key
+   
+   function setStep(key:string){
+        const newSearchParams = new URLSearchParams(searchParams)
+        newSearchParams.set("step",key)
+        window.history.pushState(null, "",`${searchParams}`)
+   }
+   
   return (
     <div className="flex grow flex-col h-full">
 
@@ -22,8 +34,8 @@ const ResumeEditor = () => {
 
       <main className="relative grow">
         <div className="absolute top-0 bottom-0 flex w-full ">
-          <div className=" w-full md:w-1/2">
-          {/* <GeneralInform></GeneralInform> */}
+          <div className="w-full md:w-1/2">
+      {/* <GeneralInform></GeneralInform> */}
           <PersonalInform></PersonalInform>
           </div>
           <div className="grow border-r"></div>
