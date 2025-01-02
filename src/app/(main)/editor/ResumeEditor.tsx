@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GeneralInform from "./forms/GeneralInform";
@@ -7,30 +7,33 @@ import { useSearchParams } from "next/navigation";
 import { steps } from "./steps";
 import Brudscrumb from "./Brudscrumb";
 import Footer from "./Footer";
-
-
+import { useState } from "react";
+import { ResumeValues } from "@/lib/validation";
+import { Fira_Code } from "next/font/google";
 
 const ResumeEditor = () => {
-   const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
-   const  currentStep = searchParams.get("step") || steps[0].key
-   
-   function setStep(key:string){
-        const newSearchParams = new URLSearchParams(searchParams)
-        newSearchParams.set("step",key)
-        window.history.pushState(null, "",`?${newSearchParams.toString()}`)
-   }
+  const [resumeData, setresumeData] = useState<ResumeValues>({});
 
-   const FormComponent = steps.find(
-    steps => steps.key === currentStep
-    
-   )?.component;
+  const currentStep = searchParams.get("step") || steps[0].key;
+
+  function setStep(key: string) {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set("step", key);
+    window.history.pushState(null, "", `?${newSearchParams.toString()}`);
+  }
+
+  const FormComponent = steps.find(
+    (steps) => steps.key === currentStep
+  )?.component;
   return (
     <div className="flex grow flex-col h-full">
-
-<header className=" space-y-1.5 border-b text-center">
+      <header className=" space-y-1.5 border-b text-center">
         <div className="flex flex-col text-center justify-center p-2">
-          <h1 className="lg:text-xl xl:text-xl md:text-xl font-bold">Design your resume</h1>
+          <h1 className="lg:text-xl xl:text-xl md:text-xl font-bold">
+            Design your resume
+          </h1>
           <span className="text-muted-foreground text-sm">
             Follow the steps to design your resume. Progress will be saved
             automatically
@@ -41,16 +44,24 @@ const ResumeEditor = () => {
       <main className="relative grow">
         <div className="absolute top-0 bottom-0 flex w-full ">
           <div className="w-full md:w-1/2 space-y-2">
-       <Brudscrumb currentStep={currentStep} setCurrentStep={setStep}></Brudscrumb>
-       {
-        FormComponent&&<FormComponent/>
-       }
+            <Brudscrumb
+              currentStep={currentStep}
+              setCurrentStep={setStep}
+            ></Brudscrumb>
+            {FormComponent && (
+              <FormComponent
+                resumeData={resumeData}
+                setResumeData={setresumeData}
+              />
+            )}
           </div>
           <div className="grow border-r"></div>
-          <div className="hidden w-1/2 md:flex">left</div>
+          <div className="hidden w-1/2 md:flex">
+           <pre>{JSON.stringify(resumeData,null,1)}</pre>
+          </div>
         </div>
-      </main>     
-      <Footer currentStep={currentStep} setCurrentStep={setStep}/>
+      </main>
+      <Footer currentStep={currentStep} setCurrentStep={setStep} />
     </div>
   );
 };

@@ -14,19 +14,37 @@ model Resume {
   title       String?
   description String?
   photoUrl    String?
-  colorHex String @default("#000")
-  borderStyle String @default("squircle")
-  summary String?
-  firstName String?
-  lastName String?
-  jobTitle String?
-  city String?
-  country String?
-  phone String?
-  email String?
+  colorHex    String  @default("#000")
+  borderStyle String  @default("squircle")
+  summary     String?
+  firstName   String?
+  lastName    String?
+  jobTitle    String?
+  city        String?
+  country     String?
+  phone       String?
+  email       String?
 
+  workExperiences WorkExperience[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  workExperienceId String
+
+  @@map("resumes")
+}
+
+model WorkExperience {
+  id String @id @default(cuid())
+
+  position    String?
+  company     String?
+  startDate   DateTime?
+  endTime     DateTime?
+  description String?
+  resumeId    String
+  resume      Resume    @relation(fields: [resumeId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("resumes")
+  @@map("work_experiences")
 }

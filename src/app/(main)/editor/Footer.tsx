@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "lucide-react";
 import { steps } from "./steps";
+import Link from "next/link";
 
 interface FooterProps {
     currentStep:String;
