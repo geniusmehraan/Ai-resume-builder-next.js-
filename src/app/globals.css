@@ -6,21 +6,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-::-webkit-scrollbar{
-  background-color: black;
-  width: 10px;
-}
-
-
-::-webkit-scrollbar-thumb{
-  background-color: white;
-  border-radius: 20px;
-}
-
-::-webkit-scrollbar-track{
-  border-radius: 20px;
-  background-color: black;
-}
 
 @layer base {
   :root {

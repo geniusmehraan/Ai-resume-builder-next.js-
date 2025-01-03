@@ -9,7 +9,6 @@ import Brudscrumb from "./Brudscrumb";
 import Footer from "./Footer";
 import { useState } from "react";
 import { ResumeValues } from "@/lib/validation";
-import { Fira_Code } from "next/font/google";
 
 const ResumeEditor = () => {
   const searchParams = useSearchParams();
@@ -41,9 +40,9 @@ const ResumeEditor = () => {
         </div>
       </header>
 
-      <main className="relative grow">
-        <div className="absolute top-0 bottom-0 flex w-full ">
-          <div className="w-full md:w-1/2 space-y-2">
+      
+        <div className="flex w-full h-[75vh] p-2">
+          <div className="w-full md:w-1/2 space-y-2  p-2 overflow-auto">
             <Brudscrumb
               currentStep={currentStep}
               setCurrentStep={setStep}
@@ -56,11 +55,11 @@ const ResumeEditor = () => {
             )}
           </div>
           <div className="grow border-r"></div>
-          <div className="hidden w-1/2 md:flex">
+          <div className="hidden w-1/2 md:flex  p-4">
            <pre>{JSON.stringify(resumeData,null,1)}</pre>
           </div>
         </div>
-      </main>
+
       <Footer currentStep={currentStep} setCurrentStep={setStep} />
     </div>
   );
