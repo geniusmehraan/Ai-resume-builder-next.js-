@@ -15,13 +15,13 @@ const Navbar = () => {
   const pathname = usePathname()
   return (
     <header className="w-full  shadow-sm p-2">
-      <div className=" w-full px-8 flex justify-between items-center">
+      <div className=" w-full sm:px-3 md:px-3 lg:px-7 xl:px-8 flex justify-between items-center">
         
         <Link href={"/billing"} className="flex items-center gap-2">
           {<Image src={logo} alt="" width={40} height={40} />}
-          <span className="font-bold text-lg">Ai resume builder</span>
+          <span className="md:text-md sm:text-sm lg:text-lg xl:text-lg xl:font-bold lg:font-bold">Ai resume builder</span>
         </Link>
-        <div className="flex items-center gap-32">
+        <div className="flex items-center  gap-16 md:gap-36 lg:gap-[100px] xl:gap-[120px]">
         <ThemeToggle/>
         <UserButton
           appearance={{

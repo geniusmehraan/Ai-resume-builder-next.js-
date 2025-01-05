@@ -8,6 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { EditorFormProps } from "@/lib/Types";
 import { workExperiencesSchema, WorkExperiencesValues } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -60,7 +61,7 @@ const WorkExperienceForm = ({ resumeData, setResumeData }: EditorFormProps) => {
               remove={remove}
             />
           ))}
-          <div className="space-y-1.5">
+          <div className="mt-6">
             <Button
               type="button"
               onClick={() =>
@@ -98,6 +99,9 @@ const WorkExperience = ({ form, index, remove }: WorkExperieneProps) => {
         <GripHorizontal className="cursor-grab"></GripHorizontal>
       </div>
 
+      
+
+      <div className="grid grid-cols-2 gap-2">
       <FormField
         control={form.control}
         name={`workExperiences.${index}.position`}
@@ -111,13 +115,12 @@ const WorkExperience = ({ form, index, remove }: WorkExperieneProps) => {
           </FormItem>
         )}
       />
-
-<FormField
+      <FormField
         control={form.control}
-        name={`workExperiences.${index}.position`}
+        name={`workExperiences.${index}.company`}
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Work Title</FormLabel>
+            <FormLabel>Company</FormLabel>
             <FormControl>
               <Input {...field} autoFocus></Input>
             </FormControl>
@@ -125,7 +128,50 @@ const WorkExperience = ({ form, index, remove }: WorkExperieneProps) => {
           </FormItem>
         )}
       />
+      </div>
 
+      <FormField
+        control={form.control}
+        name={`workExperiences.${index}.descrption`}
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Description</FormLabel>
+            <FormControl>
+              <Textarea {...field} autoFocus/>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name={`workExperiences.${index}.startDate`}
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Start Date</FormLabel>
+            <FormControl>
+              <Input {...field} type="date" autoFocus></Input>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      
+
+      <FormField
+        control={form.control}
+        name={`workExperiences.${index}.endDate`}
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>End Date</FormLabel>
+            <FormControl>
+              <Input {...field} type="date" autoFocus></Input>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
 <Button variant={"destructive"} onClick={()=>remove(index)}>Remove</Button>
 

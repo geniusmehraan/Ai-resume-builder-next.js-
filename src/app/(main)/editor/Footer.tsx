@@ -19,8 +19,8 @@ export default function Footer({currentStep,setCurrentStep}:FooterProps) {
 
 
   return (
-    <footer className="w-full   p-2 border-t">
-      <div className="flex  justify-between md:px-4 sm:px-2 lg:px-32 xl:px-38  items-center   w-full">
+    <footer className="w-full pt-4  flex items-center justify-center  p-2  border-t">
+      <div className="flex  justify-between  md:px-4 sm:px-2 lg:px-32 xl:px-38  items-center w-full">
         <div className="flex gap-2">
           <Button disabled={!previousStep} variant={"secondary"} onClick={()=>previousStep?setCurrentStep(previousStep):undefined}>Prevoius step</Button>
           <Button disabled={!nextStep} onClick={()=>nextStep?setCurrentStep(nextStep):undefined}>Next step</Button>

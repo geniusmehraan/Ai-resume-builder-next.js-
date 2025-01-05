@@ -30,35 +30,33 @@ const ResumeEditor = () => {
     <div className="flex grow flex-col h-full">
       <header className=" space-y-1.5 border-b text-center">
         <div className="flex flex-col text-center justify-center p-2">
-          <h1 className="lg:text-xl xl:text-xl md:text-xl font-bold">
+          <h1 className="lg:text-xl xl:text-xl md:text-md sm:text-sm font-bold">
             Design your resume
           </h1>
           <span className="text-muted-foreground text-sm">
-            Follow the steps to design your resume. Progress will be saved
-            automatically
+            Design your resume. Progress will be saved automatically
           </span>
         </div>
       </header>
 
-      
-        <div className="flex w-full h-[75vh] p-2">
-          <div className="w-full md:w-1/2 space-y-2  p-2 overflow-auto">
-            <Brudscrumb
-              currentStep={currentStep}
-              setCurrentStep={setStep}
-            ></Brudscrumb>
-            {FormComponent && (
-              <FormComponent
-                resumeData={resumeData}
-                setResumeData={setresumeData}
-              />
-            )}
-          </div>
-          <div className="grow border-r"></div>
-          <div className="hidden w-1/2 md:flex  p-4">
-           <pre>{JSON.stringify(resumeData,null,1)}</pre>
-          </div>
+      <div className="flex w-full h-[73vh] p-2">
+        <div className="w-full md:w-1/2 space-y-2 no-scrollbar  p-2 overflow-auto ">
+          <Brudscrumb
+            currentStep={currentStep}
+            setCurrentStep={setStep}
+          ></Brudscrumb>
+          {FormComponent && (
+            <FormComponent
+              resumeData={resumeData}
+              setResumeData={setresumeData}
+            />
+          )}
         </div>
+        <div className="grow border-r"></div>
+        <div className="hidden w-1/2 md:flex overflow-auto no-scrollbar  p-4">
+          <pre>{JSON.stringify(resumeData, null, 1)}</pre>
+        </div>
+      </div>
 
       <Footer currentStep={currentStep} setCurrentStep={setStep} />
     </div>
