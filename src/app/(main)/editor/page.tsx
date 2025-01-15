@@ -1,15 +1,18 @@
-import ResumeEditor from "./ResumeEditor"
+import React, { Suspense } from "react";
+import ResumeEditor from "./ResumeEditor";
 import { Metadata } from "next";
+
 export const metadata: Metadata = {
-    title: "Design your resume",
-  };
+  title: "Design your resume",
+};
 
 const page = () => {
   return (
     <div>
- <ResumeEditor></ResumeEditor>
- </div>
-  
+      <Suspense fallback={<div>Loading...</div>}> {/* Suspense Wrapper */}
+        <ResumeEditor />
+      </Suspense>
+    </div>
   );
 };
 
