@@ -11,11 +11,11 @@ export const metadata:Metadata = {
 export default function page(){
     return(
         <main>
-        <div className="w-full flex px-4 p-2 space-y-1.5">
-            <Button asChild>
+        <div className="w-full flex px-4 p-2 space-y-1.5 mt-4 justify-center">
+            <Button asChild className="w-[200px]  h-[42px]">
                 <Link href={"/editor"}>
               <PlusCircleIcon/>
-                Create a resume
+                Add a resume
                 </Link>
             </Button>
         </div>

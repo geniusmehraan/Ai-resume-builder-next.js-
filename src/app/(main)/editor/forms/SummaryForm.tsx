@@ -30,7 +30,7 @@ const SummaryForm = ({resumeData,setResumeData}:EditorFormProps) => {
   return (
     <div className="mx-auto max-w-xl space-y-6">
     <div className="space-y-1.5 text-center">
-      <h2 className="text-lg font-semibold">Skills</h2>
+      <h2 className="text-lg font-semibold sr-only">Summary</h2>
     </div>
 
     <Form {...form}>
