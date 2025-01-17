@@ -1,6 +1,7 @@
 import ResumePreview from "@/components/ResumePreview";
 import { ResumeValues } from "@/lib/validation";
 import ColorPiker from "./ColorPiker";
+import BorderStyle from "./BorderStyle";
 
 interface ResumePreviewSection {
   resumeData: ResumeValues;
@@ -12,14 +13,15 @@ const ResumePreviewSection = ({
   setResumeData,
 }: ResumePreviewSection) => {
   return (
-    <div className="relative hidden w-1/2 md:flex ">
-      <div className="absolute left-1 top-1 lg:left-3 flex flex-col gap-3 flex-none lg:top-3">
+    <div className="group relative  hidden w-1/2 md:flex ">
+      <div className="absolute left-1 top-1 opacity-50 lg:opacity-100 xl:opacity-100 group-hover:opacity-100 lg:left-[-10px] flex flex-col gap-3 flex-none lg:top-1">
         <ColorPiker
           color={resumeData.colorHex}
           onChange={(color) =>
             setResumeData({ ...resumeData, colorHex: color.hex })
           }
         />
+        <BorderStyle borderStyle={resumeData.borderStyle} onChange={(borderStyle)=>setResumeData({...resumeData,borderStyle})} />
       </div>
       <div className="flex w-full justify-center overflow-y-auto bg-secondary p-3">
         <ResumePreview
