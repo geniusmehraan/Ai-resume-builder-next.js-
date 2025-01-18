@@ -1,13 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { steps } from "./steps";
 import Link from "next/link";
+import { FileUser, PenLine } from "lucide-react";
+
 
 interface FooterProps {
     currentStep:String;
     setCurrentStep:(step:string) => void;
+    showSmPreview:boolean;
+    setShowSmPreview:(show:boolean)=>void;
 }
 
-export default function Footer({currentStep,setCurrentStep}:FooterProps) {
+export default function Footer({currentStep,setCurrentStep,showSmPreview,setShowSmPreview}:FooterProps) {
 
     const previousStep = steps.find(
         (_,i)=>steps[i+1]?.key===currentStep
@@ -25,6 +29,9 @@ export default function Footer({currentStep,setCurrentStep}:FooterProps) {
           <Button disabled={!previousStep} variant={"secondary"} onClick={()=>previousStep?setCurrentStep(previousStep):undefined}>Prevoius step</Button>
           <Button disabled={!nextStep} onClick={()=>nextStep?setCurrentStep(nextStep):undefined}>Next step</Button>
         </div>
+        <Button variant={"outline"} size={"icon"} onClick={()=>setShowSmPreview(!showSmPreview)} className="md:hidden">
+            {showSmPreview?<PenLine/>:<FileUser/>}
+        </Button>
         <div className="text-muted-foreground ">
           <Link href={"/resumes"}>Close</Link>
         </div>

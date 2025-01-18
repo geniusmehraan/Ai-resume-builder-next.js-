@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
+import { BorderStyles } from "@/app/(main)/editor/BorderStyle";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
@@ -68,6 +69,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
           height={100}
           alt="author photo"
           className="aspect-square object-cover"
+          style={{borderRadius:borderStyle===BorderStyles.SQUARE?"0px":borderStyle===BorderStyles.CIRCLE?"999px":"15%"}}
         />
       )}
       <div className="space-y-2.5">
@@ -201,7 +203,7 @@ function SkillSection({resumeData}:ResumeSectionProps){
              {
               skills?.map((skill,index)=>(
                 
-                <Badge key={index} className="text-md bg-black text-white rounded-md hover:bg-balck capitalize font-semibold"  style={{background:colorHex}}>
+                <Badge key={index} className="text-md bg-black text-white rounded-md hover:bg-balck capitalize font-semibold"  style={{background:colorHex,borderRadius:borderStyle===BorderStyles.SQUARE?"0px":borderStyle===BorderStyles.CIRCLE?"999px":"8px"}}>
                   {skill}
                   </Badge>
                 

@@ -10,11 +10,13 @@ import Footer from "./Footer";
 import { useState } from "react";
 import { ResumeValues } from "@/lib/validation";
 import ResumePreviewSection from "./ResumePreviewSection";
+import { cn } from "@/lib/utils";
 
 const ResumeEditor = () => {
   const searchParams = useSearchParams();
 
   const [resumeData, setresumeData] = useState<ResumeValues>({});
+  const [showSmPreview,setShowSmPreview] = useState(false)
 
   const currentStep = searchParams.get("step") || steps[0].key;
 
@@ -40,8 +42,8 @@ const ResumeEditor = () => {
         </div>
       </header>
 
-      <div className="flex w-full h-[73vh] p-2">
-        <div className="w-full md:w-1/2 space-y-2 no-scrollbar  p-2 overflow-auto ">
+      <div className="flex w-full h-[75vh] p-2">
+        <div className={cn("w-full md:w-1/2  space-y-2 no-scrollbar md:block  p-2 overflow-auto",showSmPreview&&"hidden")}>
           <Brudscrumb
             currentStep={currentStep}
             setCurrentStep={setStep}
@@ -54,10 +56,10 @@ const ResumeEditor = () => {
           )}
         </div>
         <div className="grow border-r"></div>
-        <ResumePreviewSection resumeData={resumeData} setResumeData={setresumeData}></ResumePreviewSection>
+        <ResumePreviewSection resumeData={resumeData} setResumeData={setresumeData} className={cn(showSmPreview&&"flex")}></ResumePreviewSection>
       </div>
 
-      <Footer currentStep={currentStep} setCurrentStep={setStep} />
+      <Footer currentStep={currentStep} setCurrentStep={setStep} showSmPreview={showSmPreview} setShowSmPreview={setShowSmPreview}/>
     </div>
   );
 };

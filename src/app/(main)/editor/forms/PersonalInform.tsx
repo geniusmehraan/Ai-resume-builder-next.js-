@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,22 +12,22 @@ import { Input } from "@/components/ui/input";
 import { EditorFormProps } from "@/lib/Types";
 import { personalSchema, PersonalSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 
-const PersonalInform = ({resumeData,setResumeData}:EditorFormProps) => {
-
+const PersonalInform = ({ resumeData, setResumeData }: EditorFormProps) => {
+  const photoInputRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<PersonalSchema>({
     resolver: zodResolver(personalSchema),
     defaultValues: {
-      firstName: resumeData.firstName||"",
-      lastName: resumeData.lastName||"",
-      jobTitle: resumeData.jobTitle||"",
-      city: resumeData.city||"",
-      country:resumeData.country|| "",
-      phone: resumeData.phone||"",
-      email:resumeData.email|| "",
+      firstName: resumeData.firstName || "",
+      lastName: resumeData.lastName || "",
+      jobTitle: resumeData.jobTitle || "",
+      city: resumeData.city || "",
+      country: resumeData.country || "",
+      phone: resumeData.phone || "",
+      email: resumeData.email || "",
     },
   });
 
@@ -37,13 +38,13 @@ const PersonalInform = ({resumeData,setResumeData}:EditorFormProps) => {
       if (!isValid) {
         return;
       }
-      setResumeData({...resumeData,...values})
+      setResumeData({ ...resumeData, ...values });
     });
     return unsubscribe;
-  }, [form,resumeData,setResumeData]);
+  }, [form, resumeData, setResumeData]);
 
   return (
-    <div className="max-w-xl mx-12 space-y-3">
+    <div className="max-w-xl md:mx-12 mx-2 space-y-3">
       <div className="p-1 text-center">
         <h2 className="text-lg font-semibold">Personal Info</h2>
       </div>
@@ -55,18 +56,33 @@ const PersonalInform = ({resumeData,setResumeData}:EditorFormProps) => {
             render={({ field: { value, ...fieldValues } }) => (
               <FormItem>
                 <FormLabel>Photo</FormLabel>
-                <FormControl>
-                  <Input
-                    {...fieldValues}
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      fieldValues.onChange(file);
+                <div className="flex gap-2 items-center">
+                  <FormControl>
+                    <Input
+                      {...fieldValues}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        fieldValues.onChange(file);
+                      }}
+                      className="cursor-pointer"
+                      ref={photoInputRef}
+                    />
+                  </FormControl>
+                  <Button
+                    variant={"secondary"}
+                    type="button"
+                    onClick={() => {
+                      fieldValues.onChange(null);
+                      if (photoInputRef.current) {
+                        photoInputRef.current.value = "";
+                      }
                     }}
-                    className="cursor-pointer"
-                  />
-                </FormControl>
+                  >
+                    Remove
+                  </Button>
+                </div>
                 <FormMessage></FormMessage>
               </FormItem>
             )}
