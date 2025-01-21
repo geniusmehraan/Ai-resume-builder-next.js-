@@ -17,7 +17,7 @@ const ResumePreviewSection = ({
 }: ResumePreviewSection) => {
   return (
     <div className={cn("group relative  hidden md:w-1/2 w-full md:flex ",className)}>
-      <div className="absolute left-1 top-1 opacity-50 lg:opacity-100 xl:opacity-100 group-hover:opacity-100 lg:left-[-10px] flex flex-col gap-3 flex-none lg:top-1">
+      <div className="absolute left-1 top-5 opacity-50 lg:opacity-100 xl:opacity-100 group-hover:opacity-100 lg:left-[-10px] flex flex-col gap-3 flex-none lg:top-1 md:top-1">
         <ColorPiker
           color={resumeData.colorHex}
           onChange={(color) =>

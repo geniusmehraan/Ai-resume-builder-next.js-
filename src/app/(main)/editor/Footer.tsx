@@ -2,35 +2,57 @@ import { Button } from "@/components/ui/button";
 import { steps } from "./steps";
 import Link from "next/link";
 import { FileUser, PenLine } from "lucide-react";
-
+import { useState } from "react";
 
 interface FooterProps {
-    currentStep:String;
-    setCurrentStep:(step:string) => void;
-    showSmPreview:boolean;
-    setShowSmPreview:(show:boolean)=>void;
+  currentStep: String;
+  setCurrentStep: (step: string) => void;
+  showSmPreview: boolean;
+  setShowSmPreview: (show: boolean) => void;
 }
 
-export default function Footer({currentStep,setCurrentStep,showSmPreview,setShowSmPreview}:FooterProps) {
+export default function Footer({
+  currentStep,
+  setCurrentStep,
+  showSmPreview,
+  setShowSmPreview,
+}: FooterProps) {
+  
+  const previousStep = steps.find(
+    (_, i) => steps[i + 1]?.key === currentStep
+  )?.key;
 
-    const previousStep = steps.find(
-        (_,i)=>steps[i+1]?.key===currentStep
-    )?.key
-
-    const nextStep = steps.find(
-        (_,i)=>steps[i-1]?.key===currentStep
-    )?.key
-
+  const nextStep = steps.find((_, i) => steps[i - 1]?.key === currentStep)?.key;
 
   return (
-    <footer className="w-full pt-4  flex items-center justify-center  p-2  border-t">
+    <footer className="w-full pt-2 grow  flex items-center justify-center  p-2  border-t">
       <div className="flex  justify-between  md:px-4 sm:px-2 lg:px-32 xl:px-38  items-center w-full">
         <div className="flex gap-2">
-          <Button disabled={!previousStep} variant={"secondary"} onClick={()=>previousStep?setCurrentStep(previousStep):undefined}>Prevoius step</Button>
-          <Button disabled={!nextStep} onClick={()=>nextStep?setCurrentStep(nextStep):undefined}>Next step</Button>
+          <Button
+            className="w-[65px] h-[25px] px-4  text-sm md:w-[150px] md:h-[40px]"
+            disabled={!previousStep}
+            variant={"secondary"}
+            onClick={() =>
+              previousStep ? setCurrentStep(previousStep) : undefined
+            }
+          >
+            Previous
+          </Button>
+          <Button
+            className="w-[65px] h-[25px] px-4 text-sm md:w-[150px] md:h-[40px]"
+            disabled={!nextStep}
+            onClick={() => (nextStep ? setCurrentStep(nextStep) : undefined)}
+          >
+            Next
+          </Button>
         </div>
-        <Button variant={"outline"} size={"icon"} onClick={()=>setShowSmPreview(!showSmPreview)} className="md:hidden">
-            {showSmPreview?<PenLine/>:<FileUser/>}
+        <Button
+          variant={"outline"}
+          size={"icon"}
+          onClick={() => setShowSmPreview(!showSmPreview)}
+          className="md:hidden"
+        >
+          {showSmPreview ? <PenLine /> : <FileUser />}
         </Button>
         <div className="text-muted-foreground ">
           <Link href={"/resumes"}>Close</Link>

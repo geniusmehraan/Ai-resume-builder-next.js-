@@ -14,8 +14,8 @@ const ColorPiker = ({color,onChange}:ColorPickerProps) => {
   return (
     <Popover open={showPopover} onOpenChange={setShowpopover}>
 <PopoverTrigger asChild>
-<Button variant={"outline"} size={"icon"} title="Change resume color" onClick={()=>setShowpopover(true)}>
-    <PaletteIcon className="size-5"/>
+<Button className="size-3 md:size-8" variant={"outline"} size={"icon"} title="Change resume color" onClick={()=>setShowpopover(true)}>
+    <PaletteIcon className="size-3 md:size-5"/>
 </Button>
 </PopoverTrigger>
 <PopoverContent className="border-none bg-transparent shadow-none" align="end">

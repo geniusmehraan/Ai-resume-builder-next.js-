@@ -37,7 +37,7 @@ const ResumeEditor = () => {
             Design your resume
           </h1>
           <span className="text-muted-foreground text-sm">
-            Design your resume. Progress will be saved automatically
+            Progress will be saved automatically
           </span>
         </div>
       </header>

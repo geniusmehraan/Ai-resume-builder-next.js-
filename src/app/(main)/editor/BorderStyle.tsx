@@ -30,8 +30,8 @@ const BorderStyle = ({ borderStyle, onChange }: BorderStyleProps) => {
         : Squircle;
 
   return (
-    <Button variant={"outline"} size={"icon"} onClick={onChangeHandle}>
-      {<Icon className="size-5" />}
+    <Button className="size-3 md:size-8" variant={"outline"} size={"icon"} onClick={onChangeHandle}>
+      {<Icon className="size-3 md:size-5" />}
     </Button>
   );
 };
